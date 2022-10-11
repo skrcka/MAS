@@ -3,7 +3,6 @@ import pprint
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import math
 
 def create_list_from_file(filepath):
     paths = {}
@@ -40,7 +39,7 @@ def create_mat_from_file(filepath):
         for n in nset:
             mat[n] = {}
             for m in nset:
-                mat[n][m] = 0 if n == m else math.inf
+                mat[n][m] = 0
         for i in range(len(n1s)):
             n1 = n1s[i]
             n2 = n2s[i]
@@ -49,13 +48,12 @@ def create_mat_from_file(filepath):
     return mat
 
 def printmat(mat):
-    print('   ', end='')
     for key in mat:
         print(key, end=' ')
     print()
     
     for key in mat:
-        print(f'{key}:', end=' ')
+        print(f'{key}: ', end='')
         for key2 in mat[key]:
             print(mat[key][key2], end=' ')
         print()

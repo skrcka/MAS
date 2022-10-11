@@ -1,6 +1,29 @@
-from first_lecture import create_mat_from_file, printmat
+import math
 from pprint import pprint
 
+from first_lecture import printmat
+
+
+def create_mat_from_file(filepath):
+    mat = {}
+    with open(filepath) as f:
+        n1s = []
+        n2s = []
+        for line in f:
+            n1, n2 = line.strip().split(';')
+            n1s.append(int(n1))
+            n2s.append(int(n2))
+        nset = set(n1s + n2s)
+        for n in nset:
+            mat[n] = {}
+            for m in nset:
+                mat[n][m] = 0 if n == m else math.inf
+        for i in range(len(n1s)):
+            n1 = n1s[i]
+            n2 = n2s[i]
+            mat[n1][n2] = 1
+            mat[n2][n1] = 1
+    return mat
 
 def get_paths(mat):
     for k in mat:
